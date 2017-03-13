@@ -7,6 +7,8 @@
 
 #include <type_traits>
 
+namespace Algorithms
+{
 template <typename T>
 struct HasConstantIterator
 {
@@ -20,3 +22,4 @@ private:
 public:
     enum { Value = sizeof(Test<T>(0)) == sizeof(char) };
 };
+}

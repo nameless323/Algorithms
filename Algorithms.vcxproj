@@ -145,7 +145,8 @@
     <ClCompile Include="Algorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\InsertionSort.h" />
+    <ClInclude Include="Source\BubbleSort.h" />
+    <ClInclude Include="Source\RingBuffer.h" />
     <ClInclude Include="Source\TemplateHelpers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
