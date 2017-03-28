@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <numeric>
+#include <iostream>
 
 namespace Algorithms
 {
@@ -23,6 +24,32 @@ public:
         {
             sum += i;
         }
+    }
+
+    RingBuffer() = default;
+
+    RingBuffer(RingBuffer<T, ContainerSize>& rhs) : RingBuffer(const_cast<const RingBuffer<T, ContainerSize>&>(rhs))
+    {}
+
+    RingBuffer(const RingBuffer<T, ContainerSize>& rhs) : RingBuffer()
+    {
+        buffer = rhs.buffer;
+        sum = rhs.sum;
+        std::cout << "copy constr" << std::endl;
+    }
+
+    RingBuffer(RingBuffer<T, ContainerSize>&& rhs) : RingBuffer()
+    {
+        using namespace std;
+        swap(*this, rhs);
+    }
+
+    RingBuffer<T, ContainerSize>& operator=(RingBuffer<T, ContainerSize> rhs)
+    {
+        buffer.swap(rhs.buffer);
+        //std::swap(buffer, rhs.buffer);
+        std::cout << "copy" << std::endl;
+        return *this;
     }
 
     void Reset(const T&& value)
@@ -51,6 +78,11 @@ public:
     T GetMin(std::function<bool(const T&, const T&)> comparer = std::less<T>())
     {
         return *std::min_element(std::begin(buffer), std::end(buffer), comparer);
+    }
+
+    friend void swap(RingBuffer<T, ContainerSize>& rhs, RingBuffer<T, ContainerSize>& lhs)
+    {
+        std::swap(rhs.buffer, lhs.buffer);
     }
 
 private:
