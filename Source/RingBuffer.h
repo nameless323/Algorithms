@@ -18,11 +18,11 @@ class RingBuffer
 {
 public:
     template <typename... T>
-    RingBuffer(T&&... args) : buffer({ std::forward<T>(args)... })
+    RingBuffer(T&&... args) : m_buffer({ std::forward<T>(args)... })
     {
-        for (auto& i : buffer)
+        for (auto& i : m_buffer)
         {
-            sum += i;
+            m_sum += i;
         }
     }
 
@@ -33,9 +33,8 @@ public:
 
     RingBuffer(const RingBuffer<T, ContainerSize>& rhs) : RingBuffer()
     {
-        buffer = rhs.buffer;
-        sum = rhs.sum;
-        std::cout << "copy constr" << std::endl;
+        m_buffer = rhs.buffer;
+        m_sum = rhs.sum;
     }
 
     RingBuffer(RingBuffer<T, ContainerSize>&& rhs) : RingBuffer()
@@ -46,38 +45,36 @@ public:
 
     RingBuffer<T, ContainerSize>& operator=(RingBuffer<T, ContainerSize> rhs)
     {
-        buffer.swap(rhs.buffer);
-        //std::swap(buffer, rhs.buffer);
-        std::cout << "copy" << std::endl;
+        m_buffer.swap(rhs.buffer);
         return *this;
     }
 
     void Reset(const T&& value)
     {
-        buffer.fill(std::begin(buffer), std::end(buffer), std::forward<T>(value));
+        m_buffer.fill(std::begin(m_buffer), std::end(m_buffer), std::forward<T>(value));
     }
 
     void Add(const T&& value)
     {
-        sum -= buffer[i];
-        buffer[i] = value;
-        sum += value;
-        i = ++i % buffer.size();
+        m_sum -= m_buffer[m_i];
+        m_buffer[m_i] = value;
+        m_sum += value;
+        m_i = ++m_i % m_buffer.size();
     }
 
     T GetAverage()
     {
-        return static_cast<T>(sum * (1.0f / static_cast<float>(buffer.size())));
+        return static_cast<T>(m_sum * (1.0f / static_cast<float>(m_buffer.size())));
     }
 
     T GetMax(std::function<bool(const T&, const T&)> comparer = std::less<T>())
     {
-        return *std::max_element(std::begin(buffer), std::end(buffer), comparer);
+        return *std::max_element(std::begin(m_buffer), std::end(m_buffer), comparer);
     }
 
     T GetMin(std::function<bool(const T&, const T&)> comparer = std::less<T>())
     {
-        return *std::min_element(std::begin(buffer), std::end(buffer), comparer);
+        return *std::min_element(std::begin(m_buffer), std::end(m_buffer), comparer);
     }
 
     friend void swap(RingBuffer<T, ContainerSize>& rhs, RingBuffer<T, ContainerSize>& lhs)
@@ -86,8 +83,8 @@ public:
     }
 
 private:
-    std::array<T, ContainerSize> buffer = {};
-    int i = 0;
-    T sum = {};
+    std::array<T, ContainerSize> m_buffer = {};
+    int m_i = 0;
+    T m_sum = {};
 };
 }
