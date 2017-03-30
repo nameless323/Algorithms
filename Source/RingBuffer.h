@@ -6,10 +6,7 @@
 #pragma once
 
 #include <array>
-
-#include <stdio.h>
 #include <numeric>
-#include <iostream>
 
 namespace Algorithms
 {
@@ -20,10 +17,7 @@ public:
     template <typename... T>
     RingBuffer(T&&... args) : m_buffer({ std::forward<T>(args)... })
     {
-        for (auto& i : m_buffer)
-        {
-            m_sum += i;
-        }
+        RecalculateSum();
     }
 
     RingBuffer() = default;
@@ -33,8 +27,8 @@ public:
 
     RingBuffer(const RingBuffer<T, ContainerSize>& rhs) : RingBuffer()
     {
-        m_buffer = rhs.buffer;
-        m_sum = rhs.sum;
+        m_buffer = rhs.m_buffer;
+        m_sum = rhs.m_sum;
     }
 
     RingBuffer(RingBuffer<T, ContainerSize>&& rhs) : RingBuffer()
@@ -45,16 +39,20 @@ public:
 
     RingBuffer<T, ContainerSize>& operator=(RingBuffer<T, ContainerSize> rhs)
     {
-        m_buffer.swap(rhs.buffer);
+        using namespace std;
+        swap(*this, rhs);
         return *this;
     }
 
-    void Reset(const T&& value)
+    template <typename U, typename = std::enable_if_t<std::is_convertible_v<T, std::remove_reference_t<U>>> >
+    void Reset(const U&& value)
     {
-        m_buffer.fill(std::begin(m_buffer), std::end(m_buffer), std::forward<T>(value));
+        m_buffer.fill(std::forward<const U>(value));
+        RecalculateSum();
     }
 
-    void Add(const T&& value)
+    template <typename U, typename = std::enable_if_t<std::is_convertible_v<T, std::remove_reference_t<U>>> >
+    void Add(const U&& value)
     {
         m_sum -= m_buffer[m_i];
         m_buffer[m_i] = value;
@@ -79,12 +77,27 @@ public:
 
     friend void swap(RingBuffer<T, ContainerSize>& rhs, RingBuffer<T, ContainerSize>& lhs)
     {
-        std::swap(rhs.buffer, lhs.buffer);
+        std::swap(rhs.m_sum, lhs.m_sum);
+        std::swap(rhs.m_i, lhs.m_i);
+        std::swap(rhs.m_buffer, lhs.m_buffer);
     }
 
 private:
+    inline void RecalculateSum();
+
     std::array<T, ContainerSize> m_buffer = {};
     int m_i = 0;
     T m_sum = {};
 };
+
+template <typename T, size_t ContainerSize>
+void RingBuffer<T, ContainerSize>::RecalculateSum()
+{
+    m_sum = {};
+    m_i = 0;
+    for (auto& i : m_buffer)
+    {
+        m_sum += i;
+    }
+}
 }
