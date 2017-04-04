@@ -45,14 +45,14 @@ public:
     }
 
     template <typename U, typename = std::enable_if_t<std::is_convertible_v<T, std::remove_reference_t<U>>> >
-    void Reset(const U&& value)
+    void Reset(U&& value)
     {
         m_buffer.fill(std::forward<const U>(value));
         RecalculateSum();
     }
 
     template <typename U, typename = std::enable_if_t<std::is_convertible_v<T, std::remove_reference_t<U>>> >
-    void Add(const U&& value)
+    void Add(U&& value)
     {
         m_sum -= m_buffer[m_i];
         m_buffer[m_i] = value;
