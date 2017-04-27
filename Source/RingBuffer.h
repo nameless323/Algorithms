@@ -44,6 +44,12 @@ public:
         return *this;
     }
 
+    void Reset()
+    {
+        m_buffer = {};
+        m_sum = {};
+    }
+
     template <typename U, typename = std::enable_if_t<std::is_convertible_v<T, std::remove_reference_t<U>>> >
     void Reset(U&& value)
     {
