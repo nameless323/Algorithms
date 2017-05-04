@@ -12,15 +12,18 @@ namespace Algorithms
 template <typename T>
 void InsertionSort(T first, T last, std::function<bool(decltype(*first), decltype(*last))> comparer = std::less<decltype(*first)>())
 {
-    for (T i = first; i != last - 1; ++i)
+    for (T i = first; i != last - 1; std::advance(i, 1))
     {
-        for (T j = i + 1; j != first; --j)
+        auto key = *(i + 1);
+        T j = i + 1;
+        for (; j != first; std::advance(j, -1))
         {
-            if (comparer(*j, *(j - 1)))
-                std::swap(*j, *(j - 1));
+            if (comparer(key, *(j - 1)))
+                *j = *(j - 1);
             else
                 break;
         }
+        *j = key;
     }
 }
 }
