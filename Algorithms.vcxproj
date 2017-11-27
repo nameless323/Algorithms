@@ -148,6 +148,7 @@
     <ClInclude Include="Source\BubbleSort.h" />
     <ClInclude Include="Source\InsertionSort.h" />
     <ClInclude Include="Source\LinkedList.h" />
+    <ClInclude Include="Source\MergeSort.h" />
     <ClInclude Include="Source\ProjectHelpers.h" />
     <ClInclude Include="Source\RingBuffer.h" />
     <ClInclude Include="Source\TemplateHelpers.h" />
