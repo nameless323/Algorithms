@@ -23,25 +23,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\TemplateHelpers.h">
+    <ClInclude Include="Source\Sorting\BubbleSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BubbleSort.h">
+    <ClInclude Include="Source\Sorting\InsertionSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\RingBuffer.h">
+    <ClInclude Include="Source\Sorting\MergeSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ProjectHelpers.h">
+    <ClInclude Include="Source\DataStructures\LinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InsertionSort.h">
+    <ClInclude Include="Source\DataStructures\RingBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LinkedList.h">
+    <ClInclude Include="Source\Utils\TemplateHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MergeSort.h">
+    <ClInclude Include="Source\Utils\ProjectHelpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

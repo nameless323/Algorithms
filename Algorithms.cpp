@@ -7,10 +7,15 @@
 #include <vector>
 #include <array>
 
-#include "Source/TemplateHelpers.h"
-#include "Source/BubbleSort.h"
+#include "Source/Utils/TemplateHelpers.h"
+#include "Source/Sorting/BubbleSort.h"
+#include "Source/Sorting/InsertionSort.h"
+#include "Source/Sorting/MergeSort.h"
+#include <windows.h>
 
-#include "Source/RingBuffer.h"
+#include "Source/DataStructures/RingBuffer.h"
+
+#include "Source/DataStructures/LinkedList.h"
 
 constexpr int a = 5;
 
@@ -18,20 +23,20 @@ int main()
 {
     using namespace Algorithms;
 
-    int x = 5;
+    LinkedListNode<const char> n5{ '5' , nullptr };
+    LinkedListNode<const char> n4{ '4' , &n5 };
+    LinkedListNode<const char> n3{ '3' , &n4 };
+    LinkedListNode<const char> n2{ '2' , &n3 };
+    LinkedListNode<const char> n1{ '1' , &n2 };
 
-    std::array<int, 4> arr = { 1, 2225, -31, 41 };
-    RingBuffer<int, 4> b{arr};
-    auto m = b.GetMax();
-    auto n = b.GetMin();
-    auto av = b.GetAverage();
-    std::vector<int> v = { 2, 4, 5, 1, 34, 6 };
-    Algorithms::BubbleSort(v.begin(), v.end(), [](const int& a, const int& b) { return a > b; });
+    LinkedListNode<const char>* newHead = ReverseList(&n1);
+    PrintList(newHead);
 
-//     std::cout << HasConstantIterator<int>::Value << " olollo " << v;
-    for (auto& i : v)
-        std::cout << i << " __ ";
+    std::vector<int> v = { 34, 5, 64, 23, 62, 90 };
+    //MergeSort(v, 0, 6);
+    BubbleSort(v);
+
     getchar();
+
     return 0;
 }
-

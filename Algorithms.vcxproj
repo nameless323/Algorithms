@@ -145,13 +145,13 @@
     <ClCompile Include="Algorithms.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BubbleSort.h" />
-    <ClInclude Include="Source\InsertionSort.h" />
-    <ClInclude Include="Source\LinkedList.h" />
-    <ClInclude Include="Source\MergeSort.h" />
-    <ClInclude Include="Source\ProjectHelpers.h" />
-    <ClInclude Include="Source\RingBuffer.h" />
-    <ClInclude Include="Source\TemplateHelpers.h" />
+    <ClInclude Include="Source\Sorting\BubbleSort.h" />
+    <ClInclude Include="Source\Sorting\InsertionSort.h" />
+    <ClInclude Include="Source\DataStructures\LinkedList.h" />
+    <ClInclude Include="Source\Sorting\MergeSort.h" />
+    <ClInclude Include="Source\Utils\ProjectHelpers.h" />
+    <ClInclude Include="Source\DataStructures\RingBuffer.h" />
+    <ClInclude Include="Source\Utils\TemplateHelpers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
