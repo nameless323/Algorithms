@@ -5,11 +5,6 @@
 
 #pragma once
 
-//
-// Copyright (C) Alexandr Vorontsov 2016.
-// Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
-//
-
 #include <functional>
 
 namespace Algorithms
