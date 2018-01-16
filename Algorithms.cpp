@@ -32,9 +32,9 @@ int main()
     LinkedListNode<const char>* newHead = ReverseList(&n1);
     PrintList(newHead);
 
-    std::vector<int> v = { 34, 5, 64, 23, 62, 90 };
+    std::vector<int> v = { -2, 34, 5, 64, 23, 62, 90 };
     //MergeSort(v, 0, 6);
-    BubbleSort(v);
+    InsertionSort(v.begin(), v.end());
 
     getchar();
 
