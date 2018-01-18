@@ -44,6 +44,7 @@ MaxCrossArrayResult FindMaxCrossingArray(std::vector<float> src, int low, int hi
             res.HighIndex = i;
         }
     }
+    res.MaxSum = rightSum + leftSum;
     return res;
 }
 }
