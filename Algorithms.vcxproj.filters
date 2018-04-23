@@ -47,5 +47,8 @@
     <ClInclude Include="Source\MaxSubarraySum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Miscellaneous\RotatedArrayPivot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
