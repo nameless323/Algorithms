@@ -1,6 +1,13 @@
+//
+// Copyright (C) Alexandr Vorontsov 2016.
+// Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+//
+
 #pragma once
 
 #include <vector>
+
+#include "Source/Miscellaneous/BinarySearch.h"
 
 namespace Algorithms
 {
@@ -9,7 +16,7 @@ int FindRoatedArrayPivot(const std::vector<int>& v)
     if (v.size() == 1 || v[0] > v[1])
         return 0;
     if (v[v.size() - 2] > v[v.size() - 1])
-        return v.size() - 1;
+        return static_cast<int>(v.size()) - 1;
 
     int left = 0;
     int right = static_cast<int>(v.size());
@@ -28,5 +35,15 @@ int FindRoatedArrayPivot(const std::vector<int>& v)
             left = median;
     }
     return 0;
+}
+
+int FindElementInRotatedArray(std::vector<int>& v, int e)
+{
+    int pivot = FindRoatedArrayPivot(v);
+    int res = BinarySearch(v.begin(), v.begin() + pivot, e);
+    if (res != -1)
+        return res;
+    res = BinarySearch(v.begin() + pivot, v.end(), e);
+    return res + pivot;
 }
 }

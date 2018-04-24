@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\MaxSubarraySum.h" />
+    <ClInclude Include="Source\Miscellaneous\BinarySearch.h" />
     <ClInclude Include="Source\Miscellaneous\RotatedArrayPivot.h" />
     <ClInclude Include="Source\Sorting\BubbleSort.h" />
     <ClInclude Include="Source\Sorting\InsertionSort.h" />

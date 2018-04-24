@@ -11,6 +11,9 @@
 #include "Source/Sorting/BubbleSort.h"
 #include "Source/Sorting/InsertionSort.h"
 #include "Source/Sorting/MergeSort.h"
+#include "Source/MaxSubarraySum.h"
+#include "Source/Miscellaneous/RotatedArrayPivot.h"
+#include "Source/Miscellaneous/BinarySearch.h"
 #include <windows.h>
 
 #include "Source/DataStructures/RingBuffer.h"
@@ -22,20 +25,8 @@ constexpr int a = 5;
 int main()
 {
     using namespace Algorithms;
-
-    LinkedListNode<const char> n5{ '5' , nullptr };
-    LinkedListNode<const char> n4{ '4' , &n5 };
-    LinkedListNode<const char> n3{ '3' , &n4 };
-    LinkedListNode<const char> n2{ '2' , &n3 };
-    LinkedListNode<const char> n1{ '1' , &n2 };
-
-    LinkedListNode<const char>* newHead = ReverseList(&n1);
-    PrintList(newHead);
-
-    std::vector<int> v = { -2, 34, 5, 64, 23, 62, 90 };
-    //MergeSort(v, 0, 6);
-    InsertionSort(v.begin(), v.end());
-
+    std::vector<int> v = { 13, 14, 5, 6, 7, 12 };
+    int ind = FindElementInRotatedArray(v, 12);
     getchar();
 
     return 0;

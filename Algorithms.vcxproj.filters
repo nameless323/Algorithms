@@ -50,5 +50,8 @@
     <ClInclude Include="Source\Miscellaneous\RotatedArrayPivot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Miscellaneous\BinarySearch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
