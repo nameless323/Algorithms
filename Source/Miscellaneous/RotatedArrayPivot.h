@@ -21,7 +21,7 @@ int FindRoatedArrayPivot(const std::vector<int>& v)
     int left = 0;
     int right = static_cast<int>(v.size());
 
-    while ((right - left) > 1)
+    while (right >= left)
     {
         int median = (left + right) / 2;
         bool correctToNext = v[median] < v[median + 1];
@@ -40,10 +40,10 @@ int FindRoatedArrayPivot(const std::vector<int>& v)
 int FindElementInRotatedArray(std::vector<int>& v, int e)
 {
     int pivot = FindRoatedArrayPivot(v);
-    int res = BinarySearch(v.begin(), v.begin() + pivot, e);
+    int res = BinarySearch(v, 0, pivot, e);
     if (res != -1)
         return res;
-    res = BinarySearch(v.begin() + pivot, v.end(), e);
+    res = BinarySearch(v, pivot, v.size() - 1, e);
     return res + pivot;
 }
 }

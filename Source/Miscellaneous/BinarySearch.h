@@ -9,20 +9,17 @@
 
 namespace Algorithms
 {
-int BinarySearch(std::vector<int>::iterator begin, std::vector<int>::iterator end, int value)
+int BinarySearch(std::vector<int> v, int begin, int end, int value)
 {
-    auto oldBegin = begin;
-    while (1)
+    while (end >= begin)
     {
-        ptrdiff_t median = std::distance(begin, end) / 2;
-        if (*(begin + median) > value)
-            end = begin + median;
-        else if (*(begin + median) < value)
-            begin = begin + median;
+        int median = (end + begin) / 2;
+        if (v[median] > value)
+            end = median - 1;
+        else if (v[median] < value)
+            begin = median + 1;
         else
-            return static_cast<int>(std::distance(oldBegin, begin + median));
-        if (median == 0)
-            return -1;
+            return median;
     }
     return -1;
 }
