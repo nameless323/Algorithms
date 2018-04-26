@@ -44,6 +44,6 @@ int FindElementInRotatedArray(std::vector<int>& v, int e)
     if (res != -1)
         return res;
     res = BinarySearch(v, pivot, v.size() - 1, e);
-    return res + pivot;
+    return res;
 }
 }
